@@ -1,6 +1,10 @@
 import React, {Component} from 'react'
+//curly braces to pull off a single property
+import {connect} from 'react-redux';
 
-export default class BookList extends Component {
+//we're not going to export this class anymore, so...
+// export default
+class BookList extends Component {
   renderList(){
     return this.props.books.map((book) => {
       return(
@@ -20,3 +24,14 @@ export default class BookList extends Component {
     )
   }
 }
+
+//the purpose of this function is to take our application state as an argument. Remember, our state contains the array of books and the active book
+function mapStateToProps(state){
+    //Whatever is returned from here will show up as props inside of BookList
+    //Usually we end up returning an object
+  return {
+    books: state.books
+  }
+}
+//whenever we make a container, we don't want to export the component; we want to export the container
+export default connect(mapStateToProps)(BookList);
