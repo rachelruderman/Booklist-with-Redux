@@ -13,7 +13,7 @@ class BookList extends Component {
           {book.title}
         </li>
       )
-    )}
+    })
   }
 
   render(){
@@ -28,10 +28,12 @@ class BookList extends Component {
 //the purpose of this function is to take our application state as an argument. Remember, our state contains the array of books and the active book
 function mapStateToProps(state){
     //Whatever is returned from here will show up as props inside of BookList
-    //Usually we end up returning an object
+    //Usually we end up returning an object. This function is the glue between react and redux
   return {
     books: state.books
   }
 }
 //whenever we make a container, we don't want to export the component; we want to export the container
 export default connect(mapStateToProps)(BookList);
+//connect takes a function and a component, and produces a container
+//whenever state changes, the container will rerender
